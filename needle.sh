@@ -1,7 +1,7 @@
 #injection.sh
 
 
-
+source ./loading-bar.sh
 
 
 #!/bin/bash
@@ -32,11 +32,11 @@ extra2="$4"
 if [ $1 == "1" ];
 then
     echo "File injector!"
-    sleep 2
+    progress-bar 2
     echo "Reading the code..."
-    sleep 5
+    progress-bar 3
     echo "Injecting the code..."
-    sleep 6
+    progress-bar 5
     
     change_me="$5"
     change_me_to="$6"
@@ -70,12 +70,12 @@ extra2="$4"
 if [ $1 == "2" ];
 then
     echo "File Injectior!"
-    sleep 2
+    progress-bar 2
     echo "Injecting the code..."
-    sleep 5
+    progress-bar 3
     echo $code >> $file_to_inject
     echo "Code injection finished!"
-    sleep 1
+    progress-bar 1
     change_me="$7"
     change_me_to="$8"
 
