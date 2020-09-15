@@ -37,7 +37,7 @@ This will change any "exit" lines to "#"
 
 ## EXAMPLE WITH OPTION 2 ##
 ```
-./needle 2 "type your code in ""  or  '' "  [file to inject code to] 
+./needle 2 [type your code in ""  or  '' ]  [file to inject code to] 
 ```
 
 
