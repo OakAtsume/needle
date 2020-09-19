@@ -1,44 +1,8 @@
-#Portable Version#
-still under construction
-# needle-kit #
-a small, light weight and portable little tool for injecting code or text to any other file or replacing a keyword with another one. 
+# Introduction
+Needle-kit A Easy to use and lightweight program for the injection of code to a file or and for changing text in seconds
+Handler A Very user friendly program made for making port scanning and listening for TCP connections
+PHP-backdoor A small TCP backdoor writen in PHP compatible with Handler
+Python-backdoor A small TCP backdoor writen in Python compatible with Handler
 
-## INSTALL ## 
-
-```
-git clone https://github.com/user951/needle-kit.git
-
-cd needle-kit/
-chmod +x needle
-```
-
-Now for the usage
-
-```
-
-./needle [option 1-2]  [File with code to inject]  [File to inject code to]  [solve (this only works for option 1)]  [Item to replace]  [Replace item to]
-
-```
-
-## EXAMPLE WITH OPTION 1 ## 
-
-**Common injection**
-```
-./needle 1 code.txt  inject_me.*  
-```
-
-**Solve injection option 1**
-
-```
-./needle 1 code.txt  inject_me.*  solve  "exit"  "#"
-```
-
-This will change any "exit" lines to "#"
-
-## EXAMPLE WITH OPTION 2 ##
-```
-./needle 2 [type your code in ""  or  '' ]  [file to inject code to] 
-```
-
-
-
+# Usage
+<img src=“https://github.com/KrisKasprzak/ILI9341_t3_controls >
