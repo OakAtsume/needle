@@ -1,7 +1,16 @@
-# Introduction
-Needle-kit A Easy to use and lightweight program for the injection of code to a file or and for changing text in seconds
-Handler A Very user friendly program made for making port scanning and listening for TCP connections
-PHP-backdoor A small TCP backdoor writen in PHP compatible with Handler
-Python-backdoor A small TCP backdoor writen in Python compatible with Handler
+# Needle-Kit
 
-PLEASE REPORT ANY PROBLEMS
+
+##Installation 
+
+```bash
+(assuming you have git on your system)
+
+git clone https://github.com/user951/Needle-Kit.git
+chmod +x Handler.sh 
+./Handler.sh
+[Handler.sh will also install any requiremnts]
+```
+or
+```bash
+wget
