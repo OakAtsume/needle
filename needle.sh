@@ -20,8 +20,28 @@ file_with_code="$2"
 file_to_inject="$3"
 extra2="$4"
 
-case "$0" in
-  *)
+case "$1" in
+  h)
+  printf "(Option 1 common)\n"
+  printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" \n"
+  printf " "
+  printf "(Option 1 solve)\n"
+  printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" solve \"{replace to}\" \"{keyword to replace to}\" \n"
+  printf " "
+  printf "(Option 2 common {only})\n"
+  printf "bash needle.sh 2 \"{type the code here in \"\"} {file to inject}\" \n"
+    ;;
+  -help)
+  printf "(Option 1 common)\n"
+  printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" \n"
+  printf " "
+  printf "(Option 1 solve)\n"
+  printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" solve \"{replace to}\" \"{keyword to replace to}\" \n"
+  printf " "
+  printf "(Option 2 common {only})\n"
+  printf "bash needle.sh 2 \"{type the code here in \"\"} {file to inject}\" \n"
+    ;;
+  -h)
   printf "(Option 1 common)\n"
   printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" \n"
   printf " "
