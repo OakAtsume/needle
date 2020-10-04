@@ -20,7 +20,7 @@ file_with_code="$2"
 file_to_inject="$3"
 extra2="$4"
 
-case "$1" in
+case "$0" in
   *)
   printf "(Option 1 common)\n"
   printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" \n"
