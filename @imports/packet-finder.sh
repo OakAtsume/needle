@@ -15,7 +15,7 @@ fi
 
 if command -v pkg &>/dev/null;
 then
-  echo "Error needle-kit might fail in termux!"
+  
   output="pkg install "
 fi
 
