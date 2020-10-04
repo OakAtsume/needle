@@ -22,6 +22,7 @@ extra2="$4"
 
 case "$1" in
   h)
+  clear
   printf "(Option 1 common)\n"
   printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" \n"
   printf " "
@@ -32,6 +33,7 @@ case "$1" in
   printf "bash needle.sh 2 \"{type the code here in \"\"} {file to inject}\" \n"
     ;;
   -help)
+  clear
   printf "(Option 1 common)\n"
   printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" \n"
   printf " "
@@ -42,6 +44,7 @@ case "$1" in
   printf "bash needle.sh 2 \"{type the code here in \"\"} {file to inject}\" \n"
     ;;
   -h)
+  clear
   printf "(Option 1 common)\n"
   printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" \n"
   printf " "
