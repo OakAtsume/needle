@@ -11,8 +11,7 @@ if [ `whoami` != 'root' ]
 fi
 
 #netcat & tcp backdoor handler
-source ./@imports/import1.sh
-source ./@imports/import2.sh 
+source ./@imports/import1.sh 
 source ./@imports/packet-finder.sh
 
 
