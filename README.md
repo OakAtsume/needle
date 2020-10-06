@@ -10,6 +10,10 @@ git clone https://github.com/user951/Needle-Kit.git
 chmod +x * 
 ./Handler.sh
 [Handler.sh will also install any requiremnts]
+
+touch /bin/needle
+cp needle  /bin/needle
+needle -h
 ```
 or
 ```bash
