@@ -22,7 +22,7 @@ THIS IS UNDER UPDATE
 ## Usage
 ```bash
 needle {option}
-needle replace \"1\" \"2\" {file}
+needle replace "1" "2" {file}
 needle inject 1.txt 2.txt {option}
 needle inject 1.txt 2.txt replace "1" "2" 
 ```
