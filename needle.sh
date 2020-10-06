@@ -1,134 +1,79 @@
 #!/bin/bash
-#injection.sh
 
+#code injector
+source @imports/import1.sh 
 blue
 printf "
-                                  █████ ████          
-                                 ░░███ ░░███          
- ████████    ██████   ██████   ███████  ░███   ██████ 
+                                  █████ ████
+                                 ░░███ ░░███
+ ████████    ██████   ██████   ███████  ░███   ██████
 ░░███░░███  ███░░███ ███░░███ ███░░███  ░███  ███░░███
- ░███ ░███ ░███████ ░███████ ░███ ░███  ░███ ░███████ 
- ░███ ░███ ░███░░░  ░███░░░  ░███ ░███  ░███ ░███░░░  
- ████ █████░░██████ ░░██████ ░░████████ █████░░██████ 
+ ░███ ░███ ░███████ ░███████ ░███ ░███  ░███ ░███████
+ ░███ ░███ ░███░░░  ░███░░░  ░███ ░███  ░███ ░███░░░
+ ████ █████░░██████ ░░██████ ░░████████ █████░░██████
 ░░░░ ░░░░░  ░░░░░░   ░░░░░░   ░░░░░░░░ ░░░░░  ░░░░░░\n"
-reset
-source ./@imports/import1.sh
-source ./@imports/import2.sh 
-source ./@imports/packet-finder.sh
-#code injector
+reset 
+
+
+
 file_with_code="$2"
-file_to_inject="$3"
+Inject_me_Daddy_owo="$3"
 extra2="$4"
 
-case "$1" in
-  h)
-  clear
-  printf "(Option 1 common)\n"
-  printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" \n"
-  printf " "
-  printf "(Option 1 solve)\n"
-  printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" solve \"{replace to}\" \"{keyword to replace to}\" \n"
-  printf " "
-  printf "(Option 2 common {only})\n"
-  printf "bash needle.sh 2 \"{type the code here in \"\"} {file to inject}\" \n"
-    ;;
-  -help)
-  clear
-  printf "(Option 1 common)\n"
-  printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" \n"
-  printf " "
-  printf "(Option 1 solve)\n"
-  printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" solve \"{replace to}\" \"{keyword to replace to}\" \n"
-  printf " "
-  printf "(Option 2 common {only})\n"
-  printf "bash needle.sh 2 \"{type the code here in \"\"} {file to inject}\" \n"
-    ;;
-  -h)
-  clear
-  printf "(Option 1 common)\n"
-  printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" \n"
-  printf " "
-  printf "(Option 1 solve)\n"
-  printf "bash needle.sh 1 \"{text file}\" \"{File to inject}\" solve \"{replace to}\" \"{keyword to replace to}\" \n"
-  printf " "
-  printf "(Option 2 common {only})\n"
-  printf "bash needle.sh 2 \"{type the code here in \"\"} {file to inject}\" \n"
-    ;;
+case $1 in
+  -h|help|-help|--help|--h)
+  echo "
+  needle {option}
+  needle replace \"1\" \"2\" {file}
+  needle inject 1.txt 2.txt {option}
+  needle inject 1.txt 2.txt replace "1" "2" "
+  ;;
 esac
-if [ $1 == "1" ];
-then
-  echo "File injector!"
-  progress-bar 2
-  echo "Reading the code..."
-  progress-bar 3
-  echo "Injecting the code..."
-  progress-bar 5
-  
-  change_me="$5"
-  change_me_to="$6"
-  
-  if [ $extra2 == "solve" ];
+
+case $1 in
+  replace)
+  printf "Replace\n"
+  printf "Word-1: $2\n"
+  printf "Word-2: $3\n"
+  printf "The following keyword ($2) will be Replaced with ($3) in file ($4)\n"
+  sed -i "s/$2/$3/g" $4
+  ;;
+esac
+
+case $1 in
+inject)
+  printf "Option 1\n"
+  printf "File-1: [$file_with_code]\n"
+  printf "File-2: [$Inject_me_Daddy_owo]\n"
+  if [[ -f "$file_with_code" ]];
   then
-    echo "Solve mode active"
-    
-    echo "Now replacing $5 with $6"
-    
-    sed -i "s/$change_me/$change_me_to/g" $file_to_inject
-    
-    echo "Done!"
-    
+    printf "File-1 found!\n"
+  else
+    echo "File-1 Not found!"
+    exit 0
   fi
-  cat $file_with_code >> $file_to_inject
-  echo "File injection finished!"
-echo "[======================================]"
-echo "[===============(CONSOLE)==============]"
-echo "[======================================]"
-echo $file_with_code
-echo "[======================================]"
-echo "[======================================]"
-echo "Code injected to $file_to_inject"
-fi
 
-
-
-code="$2"
-extra2="$4"
-
-if [ $1 == "2" ];
-then
-  echo "File Injectior!"
-  progress-bar 2
-  echo "Injecting the code..."
-  progress-bar 3
-  echo $code >> $file_to_inject
-  echo "Code injection finished!"
-  progress-bar 1
-  change_me="$7"
-  change_me_to="$8"
-  
-  if [ $extra2 == "solve" ];
+  if [[ -f "$Inject_me_Daddy_owo" ]];
   then
-    echo "Solve mode active"
-    
-    echo "Now replacing $5 with $6"
-    
-    sed -i "s/$change_me/$change_me_to/g" $file_to_inject
-    
-    echo "Done!"
-    
+    printf "File-2 found!\n"
+  else
+    echo "File-2 Not found!"
+    exit 0
   fi
-  
-  
-echo "[======================================]"
-echo "[===============(CONSOLE)==============]"
-echo "[======================================]"
-echo $code
-echo "[======================================]"
-echo "[======================================]"
-echo "Code injected to $file_to_inject"
-fi
+  sleep 1
+  printf "Running Injection..."
+  cat $file_with_code >> $Inject_me_Daddy_owo
+  echo "[*]"
+  echo "Done!"
+  ;;
+esac
 
-
-
-#extra
-
+case $4 in
+  replace)
+  printf "Replace\n"
+  printf "Word-1: $5\n"
+  printf "Word-2: $6\n"
+  printf "The following keyword ($5) will be Replaced with ($6) in file ($Inject_me_Daddy_owo)\n"
+  sed -i "s/$5/$6/g" $Inject_me_Daddy_owo
+  ;;
+esac
