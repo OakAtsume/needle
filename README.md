@@ -4,7 +4,7 @@
 ## Installation 
 
 ```bash
-git clone https://github.com/user951/Needle-Kit.git
+git clone https://github.com/user951/needle.git
 chmod +x * 
 needle -h
 
