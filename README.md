@@ -4,22 +4,13 @@
 ## Installation 
 
 ```bash
-(assuming you have git on your system)
-
 git clone https://github.com/user951/Needle-Kit.git
 chmod +x * 
-./Handler.sh
-[Handler.sh will also install any requiremnts]
-
-touch /bin/needle
-cp needle  /bin/needle
 needle -h
-```
-or
-```bash
-THIS IS UNDER UPDATE
+
 ```
 ## Usage
+Please report any problem or Bug 
 ```bash
 needle {option}
 needle replace "1" "2" {file}
