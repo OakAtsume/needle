@@ -22,7 +22,9 @@ else
   red
   printf "$bad\n"
   reset
-  ncat="false"
+  red
+  echo "Please run ($packet $name)!"
+  reset
 fi
 
 name="nmap"
@@ -40,7 +42,9 @@ else
   red
   printf "$bad\n"
   reset
-  nmap="false"
+  red
+  echo "Please run ($packet $name)!"
+  reset
 fi
 
 name="ping"
@@ -58,35 +62,15 @@ else
   red
   printf "$bad\n"
   reset
-  ping="false"
+  name="iputils-ping"
+  red
+  echo "Please run ($packet $name)!"
+  reset
 fi
 
-if [ $ncat == "false" ]; then printf "Installing (ncat)..."
-install ncat >/dev/null
-grn
-printf "$good\n\n"
-reset
-else
-  #DO FUCKING NOTHING LOL
-fi
 
-if [ $nmap == "false" ]; then printf "Installing (nmap)..."
-install nmap >/dev/null
-grn
-printf "$good\n\n"
-reset
-else
-  #DO FUCKING NOTHING LOL
-fi
 
-if [ $ping == "false" ]; then printf "Installing (iputils-ping)..."
-install iputils-ping >/dev/null
-grn
-printf "$good\n\n"
-reset
-else
-  #DO FUCKING NOTHING LOL
-fi
+
 while :
 do
 red
@@ -100,13 +84,14 @@ printf "\n
  ##:::: ##: ##:::: ##: ##::. ##: ########:: ########: ########: ##:::. ##:
 ..:::::..::..:::::..::..::::..::........:::........::........::..:::::..::\n\n"
 reset
-cyn
+
 printf "
 1) Normal TCP handler
 2) Scan for open Ports
 3) Connect to TCP port
-4) TCP NUKER (Not responsible)
-5) Exit
+4) Connect to TCP port (SSL)
+5) TCP NUKER (Not responsible)
+6) Exit
 \n"
 reset
 
@@ -125,7 +110,10 @@ case $handler in
   1) printf "Port: "
   read Port
   printf "\n<===[CONSOLE]===>\n\n"
-  ncat -lkvp $Port
+  ncat -l  -v -w 5 -p $Port
+  echo "Connecting killed!"
+  pause
+  clear
   ;;
   2)
   printf "Target: "
@@ -133,13 +121,13 @@ case $handler in
   printf "\n<===[CONSOLE]===>\n\n"
   mag
   printf "\n<===[PING]===>\n\n"
-  ping -c 15 $Target
+  ping -c 5 $Target
   printf "\n<===[NMAP]===>\n\n"
   nmap $Target | tail -n +5 | head -n -3 
   printf "\n<===[END]===>\n\n"
   reset
   pause
-  
+  clear
   ;;
   3)
   printf "Target: "
@@ -149,9 +137,25 @@ case $handler in
   echo "Connecting..."
   echo "IP: $Target"
   echo "PORT: $Port"
-  nc $Target $Port
+  nc -w 5 $Target $Port
+  echo "Connecting killed!"
+  pause
+  clear
   ;;
   4)
+   printf "Target: "
+  read Target
+  printf "Port: "
+  read Port
+  echo "Connecting with ssl..."
+  echo "IP: $Target"
+  echo "PORT: $Port"
+  nc -w 5 $Target $Port --ssl
+  echo "Connecting killed!"
+  pause
+  clear
+  ;;
+  5)
   printf "TCP NUKER (Because why not :3 )\n"
   printf "Target: "
   read Target
@@ -162,15 +166,17 @@ case $handler in
   red 
   echo "This will nuke the device (1-99999) scan"
   reset
-  date=$(date)
   for i in {1..99999}
   do
-  echo "$nuke" &>/dev/tcp/$Target/$i 
+        yel
+        echo "TRYING CONNECTION ON $Target ON PORT $i"
+        reset
+        echo "$nuke" | nc  -w 10 $Target $i
   done
   pause
   clear
   ;;
-  5)
+  6)
   echo "$star Exit"
   exit
   ;;
