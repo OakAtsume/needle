@@ -66,6 +66,8 @@ install ncat >/dev/null
 grn
 printf "$good\n\n"
 reset
+else
+  #DO FUCKING NOTHING LOL
 fi
 
 if [ $nmap == "false" ]; then printf "Installing (nmap)..."
@@ -73,6 +75,8 @@ install nmap >/dev/null
 grn
 printf "$good\n\n"
 reset
+else
+  #DO FUCKING NOTHING LOL
 fi
 
 if [ $ping == "false" ]; then printf "Installing (iputils-ping)..."
@@ -80,6 +84,8 @@ install iputils-ping >/dev/null
 grn
 printf "$good\n\n"
 reset
+else
+  #DO FUCKING NOTHING LOL
 fi
 while :
 do
@@ -125,7 +131,7 @@ case $handler in
   printf "Target: "
   read Target
   printf "\n<===[CONSOLE]===>\n\n"
-  cyn
+  mag
   printf "\n<===[PING]===>\n\n"
   ping -c 15 $Target
   printf "\n<===[NMAP]===>\n\n"
@@ -146,7 +152,7 @@ case $handler in
   nc $Target $Port
   ;;
   4)
-  printf "TCP NUKER (Because why not :3 )"
+  printf "TCP NUKER (Because why not :3 )\n"
   printf "Target: "
   read Target
   printf "Message_to_nuke_with: "
