@@ -87,11 +87,12 @@ reset
 
 printf "
 1) Normal TCP handler
-2) Scan for open Ports
-3) Connect to TCP port
-4) Connect to TCP port (SSL)
-5) TCP NUKER (Not responsible)
-6) Exit
+2) SSL TCP handler
+3) Scan for open Ports
+4) Connect to TCP port
+5) Connect to TCP port (SSL)
+6) TCP NUKER (Not responsible)
+7) Exit
 \n"
 reset
 
@@ -116,6 +117,15 @@ case $handler in
   clear
   ;;
   2)
+  printf "Port: "
+  read port
+  printf "\n<===[CONSOLE]===>\n\n"
+  ncat -l  -v -w 5 -p $Port --ssl
+  echo "Connecting killed!"
+  pause
+  clear
+  ;;
+  3)
   printf "Target: "
   read Target
   printf "\n<===[CONSOLE]===>\n\n"
@@ -129,7 +139,7 @@ case $handler in
   pause
   clear
   ;;
-  3)
+  4)
   printf "Target: "
   read Target
   printf "Port: "
@@ -142,7 +152,7 @@ case $handler in
   pause
   clear
   ;;
-  4)
+  5)
    printf "Target: "
   read Target
   printf "Port: "
@@ -155,7 +165,7 @@ case $handler in
   pause
   clear
   ;;
-  5)
+  6)
   printf "TCP NUKER (Because why not :3 )\n"
   printf "Target: "
   read Target
@@ -176,7 +186,7 @@ case $handler in
   pause
   clear
   ;;
-  6)
+  7)
   echo "$star Exit"
   exit
   ;;
