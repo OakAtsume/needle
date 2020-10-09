@@ -13,7 +13,7 @@ cyn=$'\e[1;36m'
 end=$'\e[0m'
 console=$'\e[1m'
 new=$'\n'
-file="netcat"
+
 
 function con(){
   printf $console
