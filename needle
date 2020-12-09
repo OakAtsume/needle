@@ -15,12 +15,25 @@ printf "
 
 
 
+#Varible name is nice
 file_with_code="$2"
 Inject_me_Daddy_owo="$3"
 extra2="$4"
 
+
+if [[ -z $1 ]];
+then
+	echo "Usage:"
+	echo "
+  needle {option}
+  needle replace \"1\" \"2\" {file}
+  needle inject 1.txt 2.txt {option}
+  needle inject 1.txt 2.txt replace "1" "2" "
+fi
+
 case $1 in
   -h|help|-help|--help|--h)
+	echo "Usage:"
   echo "
   needle {option}
   needle replace \"1\" \"2\" {file}
@@ -49,7 +62,7 @@ inject)
     printf "File-1 found!\n"
   else
     echo "File-1 Not found!"
-    exit 0
+    exit 1
   fi
 
   if [[ -f "$Inject_me_Daddy_owo" ]];
@@ -57,7 +70,7 @@ inject)
     printf "File-2 found!\n"
   else
     echo "File-2 Not found!"
-    exit 0
+    exit 1
   fi
   sleep 1
   printf "Running Injection..."
@@ -67,6 +80,7 @@ inject)
   ;;
 esac
 
+#Varible name is nice
 case $4 in
   replace)
   printf "Replace\n"
