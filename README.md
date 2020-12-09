@@ -1,5 +1,9 @@
 # Needle-Kit
 
+## Notice
+Any Distribution has to contain at least some credit to the original project.
+Forking and Changing names Won't make you a programmer.
+Nor will it make you the new owner of the project.
 
 ## Installation 
 
@@ -10,7 +14,7 @@ needle -h
 
 ```
 ## Usage
-Please report any problem or Bug 
+Please report any problem or bug 
 ```bash
 needle {option}
 needle replace "1" "2" {file}
@@ -19,8 +23,9 @@ needle inject 1.txt 2.txt replace "1" "2"
 ```
 ## Contributing
 Pull requests are welcome.
-For major changes, please open an issue first to discuss what you would like to change.
-
+For significant changes, please open an issue first to discuss what you would like to change.
 ## License 
-
 [GNU LICENSE](https://github.com/user951/Needle-Kit/blob/master/LICENSE)
+
+## Keep in mind
+I Oak Atsume do not encourage any illegal acts.
