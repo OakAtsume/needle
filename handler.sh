@@ -2,10 +2,6 @@
 
 source @imports/import1.sh
 source @imports/packet-finder.sh
-
-
-
-
 name="ncat"
 
 if command -v $name &>/dev/null;
@@ -93,6 +89,7 @@ printf "
 5) Connect to TCP port (SSL)
 6) TCP NUKER (Not responsible)
 7) Exit
+8) make needle a executable file in /bin
 \n"
 reset
 
@@ -190,6 +187,27 @@ case $handler in
   echo "$star Exit"
   exit
   ;;
+	8)
+	if command -v shc &>/dev/null;
+	then
+		shc -r -f needle && echo "$grn$good Done!$end" || echo "$red$bad Failed!$end"
+
+		echo -e "Run the following command: (optional)\n"
+		echo -e "cp needle.x $HOME/needle"
+		echo -e "rm needle.x"
+		echo -e "cd $HOME"
+		echo -e "mv needle /bin\n"
+		echo -e "needle.x.c is a the C source code file."
+		echo -e "You can get rid of it or keep it incase of the needle file getting Broken"
+		echo -e "If it gets Broken you can just run"
+		echo -e "gcc needle.x.c\n"
+		echo -e "and just rename the a.out file as needle and push it to /bin or keep it on any location you wish."
+		pause
+		clear
+	else
+		echo "$red$bad Please run $packet shc$end"
+	fi
+	;;
 esac
 
 fi 
