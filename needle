@@ -17,8 +17,8 @@ printf "
 
 #Varible name is nice
 file_with_code="$2"
-Inject_me_Daddy_owo="$3"
-extra2="$4"
+Target="$3"
+
 
 
 if [[ -z $1 ]];
@@ -28,7 +28,7 @@ then
   needle {option}
   needle replace \"1\" \"2\" {file}
   needle inject 1.txt 2.txt {option}
-  needle inject 1.txt 2.txt replace "1" "2" "
+  needle inject 1.txt 2.txt replace \"1\" \"2\" "
 fi
 
 case $1 in
@@ -38,25 +38,25 @@ case $1 in
   needle {option}
   needle replace \"1\" \"2\" {file}
   needle inject 1.txt 2.txt {option}
-  needle inject 1.txt 2.txt replace "1" "2" "
+  needle inject 1.txt 2.txt replace \"1\" \"2\" "
   ;;
 esac
 
 case $1 in
   replace)
   printf "Replace\n"
-  printf "Word-1: $2\n"
-  printf "Word-2: $3\n"
-  printf "The following keyword ($2) will be Replaced with ($3) in file ($4)\n"
-  sed -i "s/$2/$3/g" $4
+  printf '%s' "Word-1: $2\n"
+  printf '%s' "Word-2: $3\n"
+  printf '%s' "The following keyword ($2) will be Replaced with ($3) in file ($4)\n"
+  sed -i "s/$2/$3/g" "$4"
   ;;
 esac
 
 case $1 in
 inject)
   printf "Option 1\n"
-  printf "File-1: [$file_with_code]\n"
-  printf "File-2: [$Inject_me_Daddy_owo]\n"
+  printf '%s' "File-1: [$file_with_code]\n"
+  printf '%s' "File-2: [$Target]\n"
   if [[ -f "$file_with_code" ]];
   then
     printf "File-1 found!\n"
@@ -65,7 +65,7 @@ inject)
     exit 1
   fi
 
-  if [[ -f "$Inject_me_Daddy_owo" ]];
+  if [[ -f "$Target" ]];
   then
     printf "File-2 found!\n"
   else
@@ -74,7 +74,8 @@ inject)
   fi
   sleep 1
   printf "Running Injection..."
-  cat $file_with_code >> $Inject_me_Daddy_owo
+  echo '' > "$Target"
+  cat "$file_with_code" >> "$Target"
   echo "[*]"
   echo "Done!"
   ;;
@@ -84,9 +85,9 @@ esac
 case $4 in
   replace)
   printf "Replace\n"
-  printf "Word-1: $5\n"
-  printf "Word-2: $6\n"
-  printf "The following keyword ($5) will be Replaced with ($6) in file ($Inject_me_Daddy_owo)\n"
-  sed -i "s/$5/$6/g" $Inject_me_Daddy_owo
+  printf '%s' "Word-1: $5\n"
+  printf '%s' "Word-2: $6\n"
+  printf '%s' "The following keyword ($5) will be Replaced with ($6) in file ($Target)\n"
+  sed -i "s/$5/$6/g" "$Target"
   ;;
 esac
