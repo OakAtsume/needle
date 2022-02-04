@@ -8,11 +8,20 @@ Nor will it make you the new owner of the project.
 ## Installation 
 
 ```bash
-git clone https://github.com/user951/needle.git
+git clone https://github.com/OakAtsume/needle.git
 chmod +x * 
 needle -h
 
 ```
+
+## Contributing
+Fork the repo
+```bash
+git clone https://github.com/yourrepo/needle.git
+chmod +x *
+needle -h
+```
+
 ## Usage
 Please report any problem or bug 
 ```bash
