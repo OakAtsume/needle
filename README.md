@@ -1,4 +1,4 @@
-# Needle ~0v0~
+# Needle ~ 0v0 ~
 
 ## About
 Needle a small/lightweight file manipulation program for fast modifications in big file and memory management.
