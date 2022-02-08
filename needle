@@ -48,6 +48,9 @@ case "${1}" in
   echo "Mapping out ${File} please wait..."
   if readarray FileMap < "${File}"; then
     echo -e "File Mapped out to an array with ${#FileMap[@]} elements\n"
+    echo "Maping out ${File} please wait..."
+  if readarray FileMap < "${File}"; then
+    echo -e "File Maped out to an array with ${#FileMap[@]} elements\n"
   else
     echo "Unable to Map out file!! Please report this issue!!!"
     exit 1
@@ -125,7 +128,3 @@ case "${1}" in
   echo "Done! ~OvO~"
   ;;
 esac
-
-#   needle inject 1.txt 2.txt {option}
-#   needle inject 1.txt 2.txt
-

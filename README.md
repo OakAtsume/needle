@@ -1,5 +1,5 @@
-# Needle ~0v0~
 
+# Needle ~ 0v0 ~
 ## About
 Needle a small/lightweight file manipulation program for fast modifications in big file and memory management.
 
@@ -17,3 +17,4 @@ Once the information is placed and changed as requested the original file is wip
 ## Credits
 * Certified-Rice of fixing old README.md typos
 * Oak Assume for not throwing this project away!
+
