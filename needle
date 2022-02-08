@@ -3,7 +3,7 @@
 # Version: v.2
 # Console-Needle Branch
 # GitHub: https://github.com/OakAtsume/needle/tree/Console-needle
-# Creator: Oak atsume, Shoutout to Ceritified-Rice for fixing typo's!
+# Creator: Oak atsume, Thank you to Certified-Rice for fixing typo's!
 printf "
                                   █████ ████
                                  ░░███ ░░███
@@ -45,9 +45,9 @@ case "${1}" in
     echo -e "I am unable to write/read file ${File}"
     exit 1
   fi
-  echo "Maping out ${File} please wait..."
+  echo "Mapping out ${File} please wait..."
   if readarray FileMap < "${File}"; then
-    echo -e "File Maped out to an array with ${#FileMap[@]} elements\n"
+    echo -e "File Mapped out to an array with ${#FileMap[@]} elements\n"
   else
     echo "Unable to Map out file!! Please report this issue!!!"
     exit 1
@@ -127,4 +127,5 @@ case "${1}" in
 esac
 
 #   needle inject 1.txt 2.txt {option}
-#   needle inject 1.txt 2.txt replace \"1\" \"2\" "
+#   needle inject 1.txt 2.txt
+
