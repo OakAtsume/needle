@@ -10,7 +10,7 @@ Needle is meant to be used on big files (About 1-5 GB's in size), Unlike the com
 
 Needle works by reading the target file into an array located in the memory In memory the information is read and split into sections where if a pattern is found it is replaced with the corresponding value.
 
-Warning! The Maximum file size depends on your systems memory, This means if you have 4 GB or memory your system won't be able to process a 10 GB file it's just not possible without Swap or the system crashing!
+Warning! The Maximum file size depends on your systems memory, This means if you have 4 GB's of memory your system won't be able to process a 10 GB file it's just not possible without Swap or the system crashing!
 
 Once the information is placed and changed as requested the original file is wiped completely and the corresponding new text is injected and cleared off the memory to avoid an overflow.
 
