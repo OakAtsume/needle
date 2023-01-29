@@ -53,25 +53,6 @@ when "inject"
     puts "File '#{ARGV[2]}' does not exist!"
     exit 2
   end
-  # # Check if additional options are present #
-  # if ARGV[3] == "replace"
-
-  # end
-#   # Inject code into target file #
-#   puts "Injecting code from '#{ARGV[1]}' into '#{ARGV[2]}'..."
-#   # Read code to inject #
-#   code = File.read(ARGV[1])
-#   # Read target file #
-#   target = File.read(ARGV[2])
-#   # Write code to target file #
-#   File.open(ARGV[2], "w") do |f|
-#     f.write(code)
-#     f.write(target)
-#   end
-#   puts "Successfully injected code into '#{ARGV[2]}'!"
-# else
-#   puts "Invalid option '#{ARGV[0]}'"
-#   exit 2
   puts "Injecting '#{ARGV[1]}' into '#{ARGV[2]}'"
   if ARGV[3] == "replace"
     if ARGV[4].nil? || ARGV[5].nil?
