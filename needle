@@ -1,133 +1,108 @@
-#!/usr/bin/env bash
-# -*- coding: utf-8 -*-
-# Version: v.2
-# Console-Needle Branch
-# GitHub: https://github.com/OakAtsume/needle/tree/Console-needle
-# Creator: Oak atsume, Thank you to Certified-Rice for fixing typo's!
-printf "
-                                  █████ ████
-                                 ░░███ ░░███
- ████████    ██████   ██████   ███████  ░███   ██████
-░░███░░███  ███░░███ ███░░███ ███░░███  ░███  ███░░███
- ░███ ░███ ░███████ ░███████ ░███ ░███  ░███ ░███████
- ░███ ░███ ░███░░░  ░███░░░  ░███ ░███  ░███ ░███░░░
- ████ █████░░██████ ░░██████ ░░████████ █████░░██████
-░░░░ ░░░░░  ░░░░░░   ░░░░░░   ░░░░░░░░ ░░░░░  ░░░░░░\n"
+#!/bin/ruby
 
-if [[ -z "${1}" ]]; then
-  echo -e "Usage:\nSyntax: needle {Options},\nOptions: \nneedle replace : Find and replace all matches in a file\n>>> needle replace 'find-and-replace-me' 'replace-to-this' {file}\n"
-  echo -e "needle inject 'file1' 'file2' {additional-options}\n>>> needle inject 'code.txt' 'target-file.sh'"
-  echo -e ">>> needle inject 'file1' 'file2' replace 'value1' 'value2'"
-  echo -e "[New]>>> needle Console : drop to new experimental console"
+print("
+                                   █████ ████
+                                  ░░███ ░░███
+  ████████    ██████   ██████   ███████  ░███   ██████
+ ░░███░░███  ███░░███ ███░░███ ███░░███  ░███  ███░░███
+  ░███ ░███ ░███████ ░███████ ░███ ░███  ░███ ░███████
+  ░███ ░███ ░███░░░  ░███░░░  ░███ ░███  ░███ ░███░░░
+  ████ █████░░██████ ░░██████ ░░████████ █████░░██████
+  ░░░░ ░░░░░  ░░░░░░   ░░░░░░   ░░░░░░░░ ░░░░░  ░░░░░░
+  [Needle v.3.0.0], [Ruby v.#{RUBY_VERSION}] [By Oak Atsume]\n
+")
+
+if ARGV.empty?
+  puts "Usage: needle {Options},\nOptions: \nneedle replace : Find and replace all matches in a file\n>>> needle replace 'find-and-replace-me' 'replace-to-this' {file}\n"
+  puts "needle inject 'file1' 'file2' {additional-options}\n>>> needle inject 'code.txt' 'target-file.sh'"
+  puts ">>> needle inject 'file1' 'file2' replace 'value1' 'value2'"
   exit 2
-fi
+end
 
-case "${1}" in
-  -h|--help|--h)
-  echo -e "Usage:\nSyntax: needle {Options},\nOptions: \nneedle replace : Find and replace all matches in a file\n>>> needle replace 'find-and-replace-me' 'replace-to-this' {file}\n"
-  echo -e "needle inject 'file1' 'file2' {additional-options}\n>>> needle inject 'code.txt' 'target-file.sh'"
-  echo -e ">>> needle inject 'file1' 'file2' replace 'value1' 'value2'"
-  echo -e "[New]>>> needle Console : drop to new experimental console"
-  exit 2
-  ;;
-  replace)
-  if [[ -z  "${3}" ]]; then
-    echo "Missing Values please run the --help flag for assistance!"
-    exit 1
-  fi
-  String="${2}"
-  Replacement="${3}"
-  File="${4}"
-  if [[ ! -f "${File}" ]]; then
-    echo -e "I am unable to locate file ${File}!"
-    exit 1
-  elif [[ ! -w "${File}" || ! -r "${File}" ]]; then
-    echo -e "I am unable to write/read file ${File}"
-    exit 1
-  fi
-  echo "Mapping out ${File} please wait..."
-  if readarray FileMap < "${File}"; then
-    echo -e "File Mapped out to an array with ${#FileMap[@]} elements\n"
-    echo "Maping out ${File} please wait..."
-  if readarray FileMap < "${File}"; then
-    echo -e "File Maped out to an array with ${#FileMap[@]} elements\n"
+case ARGV[0]
+when "replace"
+  if ARGV[1].nil? || ARGV[2].nil? || ARGV[3].nil?
+    puts "Usage: needle replace 'find-and-replace-me' 'replace-to-this' {file}"
+    exit 2
+  end
+  if File.exists?(ARGV[3]) && File.file?(ARGV[3])
+    puts "Replacing all instances of '#{ARGV[1]}' with '#{ARGV[2]}' in #{ARGV[3]}..."
+    data = File.read(ARGV[3])
+    out = ""
+    data.each_line do |line|
+      if line.include? ARGV[1]
+        line.gsub!(ARGV[1], ARGV[2])
+        puts("Replaced '#{ARGV[1]}' with '#{ARGV[2]}' Line: #{line}:#{line.length}}")
+      end
+      out << line
+    end
+    File.write(ARGV[3], out)
+    puts "Successfully replaced all instances of '#{ARGV[1]}' with '#{ARGV[2]}' in #{ARGV[3]}!"
+  end
+when "inject"
+  if ARGV[1].nil? || ARGV[2].nil?
+    puts "Usage: needle inject 'file1' 'file2' {additional-options}"
+    exit 2
+  end
+  # Check if file exists #
+  if !File.file?(ARGV[1])
+    puts "File '#{ARGV[1]}' does not exist!"
+    exit 2
+  end
+  if !File.file?(ARGV[2])
+    puts "File '#{ARGV[2]}' does not exist!"
+    exit 2
+  end
+  # # Check if additional options are present #
+  # if ARGV[3] == "replace"
+
+  # end
+#   # Inject code into target file #
+#   puts "Injecting code from '#{ARGV[1]}' into '#{ARGV[2]}'..."
+#   # Read code to inject #
+#   code = File.read(ARGV[1])
+#   # Read target file #
+#   target = File.read(ARGV[2])
+#   # Write code to target file #
+#   File.open(ARGV[2], "w") do |f|
+#     f.write(code)
+#     f.write(target)
+#   end
+#   puts "Successfully injected code into '#{ARGV[2]}'!"
+# else
+#   puts "Invalid option '#{ARGV[0]}'"
+#   exit 2
+  puts "Injecting '#{ARGV[1]}' into '#{ARGV[2]}'"
+  if ARGV[3] == "replace"
+    if ARGV[4].nil? || ARGV[5].nil?
+      puts "Usage: needle inject 'file1' 'file2' replace 'value1' 'value2'"
+      exit 2
+    end
+    puts "> Replacing '#{ARGV[4]}' with '#{ARGV[5]}'"
+    code = File.read(ARGV[1])
+    out = ""
+    code.each_line do |line|
+      if line.include? ARGV[4]
+        line.gsub!(ARGV[4], ARGV[5])
+        puts("Replaced '#{ARGV[4]}' with '#{ARGV[5]}' Line: #{line}:#{line.length}}")
+      end
+      out << line
+    end
+
+    target = File.read(ARGV[2])
+    File.open(ARGV[2], "w") do |f|
+      f.write(target)
+      f.write(out)
+    end
+    puts "Successfully replaced all instances of '#{ARGV[4]}' with '#{ARGV[5]}' in #{ARGV[1]}!"
   else
-    echo "Unable to Map out file!! Please report this issue!!!"
-    exit 1
-  fi
-  :> "${File}"
-  end="${#FileMap[@]}"
-  for (( a=0; a<="${end}";a++ )); do
-    #echo "${FileMap[a]//${String}/${Replacement}}
-    #:> "${File}"
-    echo "[${a}/${end}] : ${#FileMap[*]}"
-    if [[ ${FileMap[a]} =~ ${String} ]]; then
-      echo -n "${FileMap[a]//${String}/${Replacement}}" >> "${File}"
-      else
-      echo -n "${FileMap[a]}" >> "${File}"
-    fi
-    unset "FileMap[a]"
-    
-  done
-  echo "Finished Replacing matches!"
-  if unset FileMap; then
-    echo -e "[\e[38;2;255;255;0mMemory\e[m]: Clearing File's Map to save system memory! : ${#FileMap[@]}"
-  else
-    echo "[Memory]: Unable to Clear memory!!"
-    exit 1
-  fi
-  #echo "Purging file..."
-  #:> "${File}"
-  read -rt "1" <> <(:) || :
-  echo -e "\n"
-  # for a in "${NewFile[@]}"; do
-  #   echo -n "${a}" >> "${File}"
-  # done
-  # if unset NewFile; then
-  #   echo -e "[\e[38;2;255;255;0mMemory\e[m]: Clearing New Map to save system memory!"
-  # else
-  #   echo "[Memory]: Unable to Clear memory!!"
-  #   exit 1
-  # fi
-  echo "Done! [$?]"
-  exit
-  ;;
-  inject)
-  if [[ -z "${3}" ]]; then
-    echo "Missing Values please run the --help flag for assistance!"
-    exit 1
-  fi
-  CodeFile="${2}"
-  InjectionFile="${3}"
-  additional="${4}"
-  String="${5}"
-  Replacement="${6}"
+    puts "> No additional options"
+    code = File.read(ARGV[1])
+    target = File.read(ARGV[2])
+    File.open(ARGV[2], "w") do |f|
+      f.write(target)
+      f.write(code)
 
-  if [[ ! -f "${CodeFile}" || ! -f "${InjectionFile}" ]]; then
-    echo -e "I am unable to locate file ${CodeFile}/${InjectionFile}!"
-    exit 1
-  elif [[ ! -w "${InjectionFile}" || ! -r "${CodeFile}" ]]; then
-    echo -e "I am unable to write/read file ${InjectionFile}, ${CodeFile}"
-    exit 1
-  fi
-
-  if [[ -n ${additional} ]]; then
-
-  while read -r Line; do
-    if [[ ${Line} =~ ${String} ]]; then
-    echo "${Line//${String}/${Replacement}}" >> "${InjectionFile}"
-    else
-    echo "${Line}" >> "${InjectionFile}"
-    fi
-  done <"${CodeFile}"
-  else
-  while read -r Line; do
-    echo "${Line}" >> "${InjectionFile}"
-  done <"${CodeFile}"
-  fi
-  echo "Done! ~OvO~"
-  ;;
-esac
-
-
-# printf "%b" "\033]11;#ff0000\007"
+    end
+  end
+end
