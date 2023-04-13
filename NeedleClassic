@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+# Version: v.2
+# Console-Needle Branch
+# GitHub: https://github.com/OakAtsume/needle/tree/Console-needle
+# Creator: Oak atsume, Thank you to Certified-Rice for fixing typo's!
+printf "
+                                  █████ ████
+                                 ░░███ ░░███
+ ████████    ██████   ██████   ███████  ░███   ██████
+░░███░░███  ███░░███ ███░░███ ███░░███  ░███  ███░░███
+ ░███ ░███ ░███████ ░███████ ░███ ░███  ░███ ░███████
+ ░███ ░███ ░███░░░  ░███░░░  ░███ ░███  ░███ ░███░░░
+ ████ █████░░██████ ░░██████ ░░████████ █████░░██████
+░░░░ ░░░░░  ░░░░░░   ░░░░░░   ░░░░░░░░ ░░░░░  ░░░░░░\n"
+
+if [[ -z "${1}" ]]; then
+  echo -e "Usage:\nSyntax: needle {Options},\nOptions: \nneedle replace : Find and replace all matches in a file\n>>> needle replace 'find-and-replace-me' 'replace-to-this' {file}\n"
+  echo -e "needle inject 'file1' 'file2' {additional-options}\n>>> needle inject 'code.txt' 'target-file.sh'"
+  echo -e ">>> needle inject 'file1' 'file2' replace 'value1' 'value2'"
+  echo -e "[New]>>> needle Console : drop to new experimental console"
+  exit 2
+fi
+
+case "${1}" in
+  -h|--help|--h)
+  echo -e "Usage:\nSyntax: needle {Options},\nOptions: \nneedle replace : Find and replace all matches in a file\n>>> needle replace 'find-and-replace-me' 'replace-to-this' {file}\n"
+  echo -e "needle inject 'file1' 'file2' {additional-options}\n>>> needle inject 'code.txt' 'target-file.sh'"
+  echo -e ">>> needle inject 'file1' 'file2' replace 'value1' 'value2'"
+  echo -e "[New]>>> needle Console : drop to new experimental console"
+  exit 2
+  ;;
+  replace)
+  if [[ -z  "${3}" ]]; then
+    echo "Missing Values please run the --help flag for assistance!"
+    exit 1
+  fi
+  String="${2}"
+  Replacement="${3}"
+  File="${4}"
+  if [[ ! -f "${File}" ]]; then
+    echo -e "I am unable to locate file ${File}!"
+    exit 1
+  elif [[ ! -w "${File}" || ! -r "${File}" ]]; then
+    echo -e "I am unable to write/read file ${File}"
+    exit 1
+  fi
+  echo "Mapping out ${File} please wait..."
+  if readarray FileMap < "${File}"; then
+    echo -e "File Mapped out to an array with ${#FileMap[@]} elements\n"
+    echo "Maping out ${File} please wait..."
+  if readarray FileMap < "${File}"; then
+    echo -e "File Maped out to an array with ${#FileMap[@]} elements\n"
+  else
+    echo "Unable to Map out file!! Please report this issue!!!"
+    exit 1
+  fi
+  :> "${File}"
+  end="${#FileMap[@]}"
+  for (( a=0; a<="${end}";a++ )); do
+    #echo "${FileMap[a]//${String}/${Replacement}}
+    #:> "${File}"
+    echo "[${a}/${end}] : ${#FileMap[*]}"
+    if [[ ${FileMap[a]} =~ ${String} ]]; then
+      echo -n "${FileMap[a]//${String}/${Replacement}}" >> "${File}"
+      else
+      echo -n "${FileMap[a]}" >> "${File}"
+    fi
+    unset "FileMap[a]"
+
+  done
+  echo "Finished Replacing matches!"
+  if unset FileMap; then
+    echo -e "[\e[38;2;255;255;0mMemory\e[m]: Clearing File's Map to save system memory! : ${#FileMap[@]}"
+  else
+    echo "[Memory]: Unable to Clear memory!!"
+    exit 1
+  fi
+  #echo "Purging file..."
+  #:> "${File}"
+  read -rt "1" <> <(:) || :
+  echo -e "\n"
+  # for a in "${NewFile[@]}"; do
+  #   echo -n "${a}" >> "${File}"
+  # done
+  # if unset NewFile; then
+  #   echo -e "[\e[38;2;255;255;0mMemory\e[m]: Clearing New Map to save system memory!"
+  # else
+  #   echo "[Memory]: Unable to Clear memory!!"
+  #   exit 1
+  # fi
+  echo "Done! [$?]"
+  exit
+  ;;
+  inject)
+  if [[ -z "${3}" ]]; then
+    echo "Missing Values please run the --help flag for assistance!"
+    exit 1
+  fi
+  CodeFile="${2}"
+  InjectionFile="${3}"
+  additional="${4}"
+  String="${5}"
+  Replacement="${6}"
+
+  if [[ ! -f "${CodeFile}" || ! -f "${InjectionFile}" ]]; then
+    echo -e "I am unable to locate file ${CodeFile}/${InjectionFile}!"
+    exit 1
+  elif [[ ! -w "${InjectionFile}" || ! -r "${CodeFile}" ]]; then
+    echo -e "I am unable to write/read file ${InjectionFile}, ${CodeFile}"
+    exit 1
+  fi
+
+  if [[ -n ${additional} ]]; then
+
+  while read -r Line; do
+    if [[ ${Line} =~ ${String} ]]; then
+    echo "${Line//${String}/${Replacement}}" >> "${InjectionFile}"
+    else
+    echo "${Line}" >> "${InjectionFile}"
+    fi
+  done <"${CodeFile}"
+  else
+  while read -r Line; do
+    echo "${Line}" >> "${InjectionFile}"
+  done <"${CodeFile}"
+  fi
+  echo "Done! ~OvO~"
+  ;;
+esac
+
+
+# printf "%b" "\033]11;#ff0000\007"
